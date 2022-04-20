@@ -1,5 +1,7 @@
-div.ui.segment {
-    margin: 10px;
+.ui.segment.home-segment{
+    margin: 1%;
+    margin-top: 1%;
+    margin-left: 1%;
 }
 
 .opacity-0 {
@@ -9,4 +11,8 @@ div.ui.segment {
 #root {
     height: 100vh;
     width: 100%;
+}
+
+div.ui.grid.main-grid {
+    height: 100vh;
 }
