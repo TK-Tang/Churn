@@ -1,5 +1,5 @@
 import { React, Component } from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Landing from "./components/landing";
 import "./App.css";
 
@@ -11,20 +11,18 @@ function SimonTang() {
     return <h1>Hello, I'm a human.</h1>
 }
 
-export default class App extends Component {
+class App extends Component {
     render() {
         return (
             <BrowserRouter>
-                <Switch>
-                    <Route path="/TKTang">
-                        <TKTang/>
-                    </Route>
-                    <Route path="/SimonTang">
-                        <SimonTang/>
-                    </Route>
-                    <Route path="/" component={Landing} />
-                </Switch>
+                <Routes>
+                    <Route path="/TKTang" element={TKTang()} />
+                    <Route path="/SimonTang" element={SimonTang()} />
+                    <Route path="/*" index element={<Landing/>} />
+                </Routes>
             </BrowserRouter>
         );
     }
 }
+
+export default App;

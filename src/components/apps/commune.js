@@ -1,9 +1,29 @@
 import { React, Component } from "react";
 import { Divider, Grid, Header, Input, Label, Segment, Table } from "semantic-ui-react";
+import CanvasJSReact from '../../canvasjs/canvasjs.react';
+var CanvasJS = CanvasJSReact.CanvasJS;
+var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 export default class Commune extends Component {
     render(){
+        const options = {
+            title: {
+              text: "Basic Column Chart in React"
+            },
+            data: [{				
+                      type: "column",
+                      dataPoints: [
+                          { label: "Apple",  y: 10  },
+                          { label: "Orange", y: 15  },
+                          { label: "Banana", y: 25  },
+                          { label: "Mango",  y: 30  },
+                          { label: "Grape",  y: 28  }
+                      ]
+             }]
+         }
+
         return (
+            
             <Grid columns={3}>
                 <Grid.Column width={12}>
                     <Segment
@@ -23,8 +43,6 @@ export default class Commune extends Component {
                         This app helps you calculate how much more quickly you would pay off your home loan if you shared a commune home.
                         <br/>
                         The sooner you have a home, a community with friends and family and the sooner you can quit your job and do what you want to do!
-    
-    
                     </Segment>
     
                     <Segment
@@ -32,6 +50,7 @@ export default class Commune extends Component {
                         className="home-segment"
                     >
                         <Label as="a" color="red" ribbon>Chart</Label>
+                        <CanvasJSChart options = {options} />
                         <Table stackable>
                             <Table.Header>
                             <Table.Row>
