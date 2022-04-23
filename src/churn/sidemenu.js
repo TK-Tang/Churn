@@ -13,6 +13,7 @@ function LeftSideBar() {
             inverted 
             vertical 
             visible={true}
+            className="sidemenu"
         >
             <Menu.Item as="a" onClick={() => history("/")}>
                 <Icon name="sitemap"/>

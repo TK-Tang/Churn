@@ -3,7 +3,7 @@ import { Header, Segment, Grid, Divider, Label } from "semantic-ui-react";
 
 function Home() {
     return (
-        <Grid columns={3} className="main-grid">
+        <Grid columns={3}>
             <Grid.Column width={12}>
                 <Segment
                     color={"red"}

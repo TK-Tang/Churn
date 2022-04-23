@@ -13,6 +13,9 @@
     width: 100%;
 }
 
-div.ui.grid.main-grid {
-    height: 100vh;
+.pusher.main-contents {
+    height:100vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+
 }
