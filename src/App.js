@@ -1,6 +1,6 @@
 import { React, Component } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Landing from "./components/landing";
+import Landing from "./churn/landing";
 import "./App.css";
 
 function TKTang() {
