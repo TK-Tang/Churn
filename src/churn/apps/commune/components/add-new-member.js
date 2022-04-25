@@ -1,5 +1,6 @@
 import { React } from "react";
 import { Button, Form, Icon, Input, Label, Segment } from "semantic-ui-react";
+import CommuneContext from "../commune-context.js";
 
 function NameInput() {
     return  <Input 
