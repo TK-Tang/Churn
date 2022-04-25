@@ -15,10 +15,14 @@ function NameInput() {
 }
 
 function MonthlyPaymentsInput() {
-    return  <Input labelPosition="right" type="number" placeholder="Monthly Payments">
+    return  <Input 
+                labelPosition="right" 
+                type="number" 
+                placeholder="Monthly Payments"
+            >
                 <input  type="number" step="100" min="0"/>
                 <Label>Monthly Payments</Label>
-            </Input>;   
+            </Input>;
 }
 
 function AddNewMember() {

@@ -1,4 +1,4 @@
-import { useState, Component } from "react";
+import { Component } from "react";
 import { Grid } from "semantic-ui-react";
 import AddNewMember from "./components/add-new-member.js";
 import Charts from "./components/charts.js";
@@ -6,6 +6,7 @@ import Introduction from "./components/introduction.js"
 import LoanAndInterest from "./components/loan-and-interests.js";
 import LoanSummary from "./components/loan-summary.js";
 import TheRoomMates from "./components/the-room-mates.js";
+import Save from "./components/save.js";
 import CommuneContext from "./commune-context.js";
 
 export default class Commune extends Component {
@@ -13,10 +14,12 @@ export default class Commune extends Component {
         super(props)
 
         this.state =  {
+            email: "",
             loan: 1000000,
             perAnnumInterest: 4,
             loanLifetime: 30,
             loanStartYear: 2023,
+            setEmail: (value) => { this.setState({email: value}) },
             setLoan: (value) => { this.setState({loan: value}) },
             setPerAnnumInterest: (value) => { this.setState({perAnnumnterest: value}) },
             setLoanLifetime: (value) => { this.setState({loanLifetime: value}) },
@@ -49,6 +52,7 @@ export default class Commune extends Component {
                         <Charts data={this.state}/>
                         <LoanSummary/>
                         <TheRoomMates/>
+                        <Save/>
                     </Grid.Column>
                 </Grid>
             </CommuneContext.Provider>
