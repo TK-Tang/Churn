@@ -7,14 +7,14 @@ function Charts() {
     const options = {
         animationEnabled: true,
         title:{
-            text: "Daily High Temperature at Different Beaches"
+            text: "Loan Graph"
         },
         axisX: {
             valueFormatString: "DD MMM, YY"
         },
         axisY: {
-            title: "Temperature (in °C)",
-            suffix: " °C"
+            title: "Debt",
+            suffix: " $"
         },
         legend:{
             cursor: "pointer",

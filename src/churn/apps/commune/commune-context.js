@@ -1,11 +1,28 @@
 import React from "react";
 
 const CommuneContext = React.createContext({
-    loan: 0,
-    perAnnumInterest: 0,
-    loanLifetime: 1,
+    loan: 1000000,
+    perAnnumInterest: 4,
+    loanLifetime: 30,
     loanStartYear: 2023,
-    members: [ ]
+    setLoan: () => { },
+    setPerAnnumInterest: () => { },
+    setLoanLifetime: () => { },
+    setLoanStartYear: () => { },
+    members: [ 
+        {
+            name: "TK Tang",
+            monthlyPayment: 5000
+        },
+        {
+            name: "Simon Tang",
+            monthlyPayment: 4000
+        },
+        {
+            name: "Lauren Gaydos",
+            monthlyPayment: 1000
+        }
+    ]
 });
 
 export default CommuneContext;

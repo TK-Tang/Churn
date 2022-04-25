@@ -1,6 +1,5 @@
 import { React } from "react";
-import { Form, Icon, Input, Label, Segment } from "semantic-ui-react";
-import CommuneContext from "../commune-context.js";
+import { Button, Form, Icon, Input, Label, Segment } from "semantic-ui-react";
 
 function NameInput() {
     return  <Input 
@@ -35,14 +34,6 @@ function AddNewMember() {
                 <br/>
                 <br/>
 
-                <CommuneContext.Consumer>
-                    {
-                        ({text}) => (
-                            <div>zxcv {text}</div>
-                        )
-                    }
-                </CommuneContext.Consumer>
-
                 <Form>
                     <Form.Group>
                         <Form.Field
@@ -55,6 +46,13 @@ function AddNewMember() {
                             label="Monthly Payments"
                             placeholder="Monthly Payments"
                         />
+                        <Form.Field
+                            control={Input}
+                            placeholder="Add New"
+                            label="Add"
+                        >
+                            <Button primary>Add</Button>
+                        </Form.Field>
                     </Form.Group>
                 </Form>
             </Segment>
