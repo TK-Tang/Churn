@@ -49,7 +49,12 @@ export default class Commune extends Component {
                     })
                 )
             },
-            deleteMembers: () => { },
+            deleteMember: (value) => { this.setState (
+                previousState =>
+                ({
+                    members: [...this.state.members.filter((m) => { return m.name != value})]
+                })
+            )},
             memberName: "Bobbie Draper",
             setMemberName: (value) => { this.setState({memberName: value}) },
             memberMonthlyPayment: 7700,

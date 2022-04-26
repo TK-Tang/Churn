@@ -20,13 +20,13 @@ function TheRoomMates() {
                     <Table.Body>
                         <CommuneContext.Consumer>
                             {
-                                ({members}) => members.map((member, index) => 
+                                ({members, deleteMember}) => members.map((member, index) => 
                                     <Table.Row key={index}>
                                         <Table.Cell>{member.name}</Table.Cell>
                                         <Table.Cell>{member.monthlyPayment}</Table.Cell>
                                         <Table.Cell>0</Table.Cell>
                                         <Table.Cell textAlign="right">
-                                            <Button icon color="red">
+                                            <Button icon color="red" onClick={() => deleteMember(member.name)}>
                                                 <Icon name="trash" />
                                             </Button>
                                         </Table.Cell>

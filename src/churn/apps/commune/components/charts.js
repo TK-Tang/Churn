@@ -26,7 +26,7 @@ function drawLineForAllMembers(data) {
     var monthlyPaymentTotal = 0;
 
     data.members.forEach((member) => { 
-        monthlyPaymentTotal = monthlyPaymentTotal + member.monthlyPayment;
+        monthlyPaymentTotal = +monthlyPaymentTotal + +member.monthlyPayment;
     });
 
     for (let loan = data.loan; loan > monthlyPaymentTotal; loan = loan + (loan * ((data.perAnnumInterest/100)/12)))
@@ -136,7 +136,7 @@ function drawLineForTopTwoMembers(data) {
         dateCursor = incrementDate(dateCursor);
         dataPoints.push({x: dateCursor, y: loan});
 
-        if (dateCursor.getFullYear() > data.loanStartYear + data.loanLifetime)
+        if (hasExceededLoanLifetime(dateCursor, data))
         {
             break;
         }
@@ -156,22 +156,28 @@ function drawLineForTopTwoMembers(data) {
 }
 
 function Charts(props) {
+    var title = "Loan Graph";
     var data = props.data;
     var lines = [];
 
-    var lineForAllMembers = drawLineForAllMembers(data);
-    var lineForTopTwoMembers = drawLineForTopTwoMembers(data);
-    var lineForRichestMember = drawLineForRichestMember(data);
-    var lineForPoorestMember = drawLineForPoorestMember(data);
-    lines.push(lineForRichestMember);
-    lines.push(lineForPoorestMember);
-    lines.push(lineForTopTwoMembers);
-    lines.push(lineForAllMembers);
+    if (data.members.length > 1) {
+        var lineForRichestMember = drawLineForRichestMember(data);
+        var lineForPoorestMember = drawLineForPoorestMember(data);
+        var lineForTopTwoMembers = drawLineForTopTwoMembers(data);
+        var lineForAllMembers = drawLineForAllMembers(data);
 
-    const options = {
+        lines.push(lineForRichestMember);
+        lines.push(lineForPoorestMember);
+        lines.push(lineForTopTwoMembers);
+        lines.push(lineForAllMembers);
+    } else {
+        title = "Need at least two members!";
+    }
+
+    let options = {
         animationEnabled: true,
         title:{
-            text: "Loan Graph"
+            text: title
         },
         axisX: {
             valueFormatString: "MMM, YYYY"
