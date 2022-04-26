@@ -21,7 +21,7 @@ export default class Commune extends Component {
             loanStartYear: 2023,
             setEmail: (value) => { this.setState({email: value}) },
             setLoan: (value) => { this.setState({loan: value}) },
-            setPerAnnumInterest: (value) => { this.setState({perAnnumnterest: value}) },
+            setPerAnnumInterest: (value) => { this.setState({perAnnumInterest: value}) },
             setLoanLifetime: (value) => { this.setState({loanLifetime: value}) },
             setLoanStartYear: (value) => { this.setState({loanStartYear: value}) },
             members: [ 
