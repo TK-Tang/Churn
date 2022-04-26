@@ -1,5 +1,5 @@
 import { React } from "react";
-import { Label, Segment, Table } from "semantic-ui-react";
+import { Button, Icon, Label, Segment, Table } from "semantic-ui-react";
 import CommuneContext from "../commune-context.js";
 
 function TheRoomMates() {
@@ -12,8 +12,9 @@ function TheRoomMates() {
                     <Table.Header>
                         <Table.Row>
                             <Table.HeaderCell>Name</Table.HeaderCell>
-                            <Table.HeaderCell>Monthly Payments</Table.HeaderCell>
-                            <Table.HeaderCell textAlign="right">Total Lifetime Payment</Table.HeaderCell>
+                            <Table.HeaderCell>Monthly Payment</Table.HeaderCell>
+                            <Table.HeaderCell>Total Lifetime Payment</Table.HeaderCell>
+                            <Table.HeaderCell textAlign="right">Options</Table.HeaderCell>
                         </Table.Row>
                     </Table.Header>
                     <Table.Body>
@@ -23,7 +24,12 @@ function TheRoomMates() {
                                     <Table.Row key={index}>
                                         <Table.Cell>{member.name}</Table.Cell>
                                         <Table.Cell>{member.monthlyPayment}</Table.Cell>
-                                        <Table.Cell textAlign="right">0</Table.Cell>
+                                        <Table.Cell>0</Table.Cell>
+                                        <Table.Cell textAlign="right">
+                                            <Button icon color="red">
+                                                <Icon name="trash" />
+                                            </Button>
+                                        </Table.Cell>
                                     </Table.Row>
                                 )
                             }

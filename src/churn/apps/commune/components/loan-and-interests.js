@@ -34,7 +34,6 @@ function PerAnnumInterestInput() {
                 </CommuneContext.Consumer>
                 <Label>%</Label>
             </Input>;
-
 }
 
 function LoanLifetimeInput() {

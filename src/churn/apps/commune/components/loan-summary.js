@@ -9,16 +9,18 @@ function LoanSummary() {
             >
                 <Label as="a" color="teal" ribbon>Loan Summary</Label>
                 <CommuneContext.Consumer>
-                        {
-                            ({loan, loanStartYear, loanLifetime, perAnnumInterest}) => (
-                                <React.Fragment>
-                                    <br/>
-                                    <br/>
-                                    You are taking a loan of {loan}$ beginning in {loanStartYear} for {loanLifetime} years, with a yearly interest of {perAnnumInterest}%.
-                                    <br/>
-                                </React.Fragment>
-                            )
-                        }
+                    {
+                        ({loan, loanStartYear, loanLifetime, perAnnumInterest}) => (
+                            <React.Fragment>
+                                <br/>
+                                <br/>
+                                The chart displays the lifetime of the loan, which is ${loan.toLocaleString()} total.
+                                <br/>
+                                It begins in {loanStartYear}, lasting for {loanLifetime} years at a yearly interest of {perAnnumInterest}%.
+                                <br/>
+                            </React.Fragment>
+                        )
+                    }
                 </CommuneContext.Consumer>
             </Segment>;
 }

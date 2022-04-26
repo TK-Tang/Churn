@@ -11,20 +11,13 @@ const CommuneContext = React.createContext({
     setPerAnnumInterest: () => { },
     setLoanLifetime: () => { },
     setLoanStartYear: () => { },
-    members: [ 
-        {
-            name: "TK Tang",
-            monthlyPayment: 5000
-        },
-        {
-            name: "Simon Tang",
-            monthlyPayment: 4000
-        },
-        {
-            name: "Lauren Gaydos",
-            monthlyPayment: 1000
-        }
-    ]
+    members: [ ],
+    addMember: () => { },
+    deleteMembers: () => { },
+    memberName: "",
+    setMemberName: () => { },
+    memberMonthlyPayment: 0,
+    setMemberMonthlyPayment: () => { }
 });
 
 export default CommuneContext;

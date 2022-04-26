@@ -26,18 +26,34 @@ export default class Commune extends Component {
             setLoanStartYear: (value) => { this.setState({loanStartYear: value}) },
             members: [ 
                 {
-                    name: "TK Tang",
+                    name: "James Holden",
                     monthlyPayment: 5000
                 },
                 {
-                    name: "Simon Tang",
+                    name: "Naomi Nagata",
                     monthlyPayment: 4000
                 },
                 {
-                    name: "Lauren Gaydos",
-                    monthlyPayment: 1000
+                    name: "Alex Kamal",
+                    monthlyPayment: 3500
+                },
+                {
+                    name: "Amos Burton",
+                    monthlyPayment: 4500
                 }
-            ]
+            ],
+            addMember: () => { this.setState(
+                    previouState => 
+                    ({ 
+                        members: [...previouState.members, { name: this.state.memberName, monthlyPayment: this.state.memberMonthlyPayment }],
+                    })
+                )
+            },
+            deleteMembers: () => { },
+            memberName: "Bobbie Draper",
+            setMemberName: (value) => { this.setState({memberName: value}) },
+            memberMonthlyPayment: 7700,
+            setMemberMonthlyPayment: (value) => { this.setState({memberMonthlyPayment: value}) }
         }
     }
 

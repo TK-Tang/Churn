@@ -10,19 +10,43 @@ function NameInput() {
                 type="text" 
             >
                 <Icon name="users" />
-                <input  type="text"/>
+                <CommuneContext.Consumer>
+                    {
+                        ({memberName, setMemberName}) => 
+                        (
+                            <input
+                                type="text"
+                                value={memberName}
+                                onChange={e => setMemberName(e.target.value)}
+                            />
+                        )
+                    }
+                </CommuneContext.Consumer>
                 <Label>Name</Label>
             </Input>;  
 }
 
-function MonthlyPaymentsInput() {
+function MonthlyPaymentInput() {
     return  <Input 
                 labelPosition="right" 
                 type="number" 
-                placeholder="Monthly Payments"
+                placeholder="Monthly Payment"
             >
-                <input  type="number" step="100" min="0"/>
-                <Label>Monthly Payments</Label>
+                <CommuneContext.Consumer>
+                    {
+                        ({memberMonthlyPayment, setMemberMonthlyPayment}) => 
+                        (
+                            <input 
+                                min="0"
+                                step="100"
+                                type="number" 
+                                value={memberMonthlyPayment}
+                                onChange={e => setMemberMonthlyPayment(e.target.value)}
+                            />
+                        )
+                    }
+                </CommuneContext.Consumer>
+                <Label>Monthly Payment</Label>
             </Input>;
 }
 
@@ -47,16 +71,23 @@ function AddNewMember() {
                             placeholder="Name"
                         />
                         <Form.Field
-                            control={MonthlyPaymentsInput}
-                            label="Monthly Payments"
-                            placeholder="Monthly Payments"
+                            control={MonthlyPaymentInput}
+                            label="Monthly Payment"
+                            placeholder="Monthly Payment"
                         />
                         <Form.Field
                             control={Input}
                             placeholder="Add New"
                             label="Add"
                         >
-                            <Button primary>Add</Button>
+                            <CommuneContext.Consumer>
+                                {
+                                    ({addMember}) =>
+                                    (
+                                        <Button primary onClick={addMember}>Add</Button>
+                                    )
+                                }
+                            </CommuneContext.Consumer>
                         </Form.Field>
                     </Form.Group>
                 </Form>
