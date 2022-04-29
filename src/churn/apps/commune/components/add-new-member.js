@@ -32,6 +32,8 @@ function MonthlyPaymentInput() {
                 type="number" 
                 placeholder="Monthly Payment"
             >
+                <Label basic>$</Label>
+
                 <CommuneContext.Consumer>
                     {
                         ({memberMonthlyPayment, setMemberMonthlyPayment}) => 
@@ -52,6 +54,7 @@ function MonthlyPaymentInput() {
 
 function AddNewMember() {
     return  <Segment
+                id="add-new-member-segment"
                 color={"orange"}
                 className="home-segment"
             >
@@ -78,13 +81,18 @@ function AddNewMember() {
                         <Form.Field
                             control={Input}
                             placeholder="Add New"
-                            label="Add"
                         >
                             <CommuneContext.Consumer>
                                 {
                                     ({addMember}) =>
                                     (
-                                        <Button primary onClick={addMember}>Add</Button>
+                                        <Button 
+                                            id="add-new-member-button"
+                                            primary
+                                            onClick={addMember}
+                                        >
+                                            Add
+                                        </Button>
                                     )
                                 }
                             </CommuneContext.Consumer>

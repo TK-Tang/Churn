@@ -79,6 +79,7 @@ function LoanStarYearInput() {
 
 function LoanAndInterest() {
     return  <Segment
+                id="loan-and-interest-segment"
                 color={"green"}
                 className="home-segment"
             >

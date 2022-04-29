@@ -7,7 +7,7 @@ function Introduction() {
                 className="home-segment"
             >
                 <Label as="a" color="blue" ribbon>Introduction</Label>
-                <Header as="h2"color="grey">Don't play the game of life against everyone else. Play it with everyone else!</Header>
+                <Header as="h2"color="grey">Commune: Don't play the game of life against everyone else. Play it with everyone else!</Header>
                 <Divider/>
                 Two full time income individuals can't afford to purchase property in Sydney nowadays.
                 <br/>

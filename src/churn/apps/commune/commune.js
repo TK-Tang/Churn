@@ -65,16 +65,38 @@ export default class Commune extends Component {
     render(){
         return (
             <CommuneContext.Provider value={this.state}>
-                <Grid>
-                    <Grid.Column width={12}>
-                        <Introduction />
-                        <LoanAndInterest/>
-                        <AddNewMember/>
-                        <Charts data={this.state}/>
-                        <LoanSummary/>
-                        <TheRoomMates/>
-                        <Save/>
-                    </Grid.Column>
+                <Grid columns={8}>
+                    <Grid.Row>
+                        <Grid.Column width={14}>
+                            <Introduction/>
+                        </Grid.Column>
+                    </Grid.Row>
+                    <Grid.Row>
+                        <Grid.Column width={8}>
+                            <LoanAndInterest/>
+                        </Grid.Column>
+                        <Grid.Column width={6}>
+                            <AddNewMember/>
+                        </Grid.Column>
+                    </Grid.Row>
+                    <Grid.Row>
+                        <Grid.Column width={11}>
+                            <Charts data={this.state}/>
+                        </Grid.Column>
+                        <Grid.Column width={3}>
+                            <LoanSummary/>
+                        </Grid.Column>
+                    </Grid.Row>
+                    <Grid.Row>
+                        <Grid.Column width={14}>
+                            <TheRoomMates/>
+                        </Grid.Column>
+                    </Grid.Row>
+                    <Grid.Row>
+                        <Grid.Column width={14}>
+                            <Save/>
+                        </Grid.Column>
+                    </Grid.Row>
                 </Grid>
             </CommuneContext.Provider>
         );
