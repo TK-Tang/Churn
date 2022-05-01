@@ -2,7 +2,7 @@ import { React } from "react";
 import { Divider, Label, Header, Segment } from "semantic-ui-react";
 
 function Introduction() {
-    return <Segment
+    return  <Segment
                 color={"blue"}
                 className="home-segment"
             >

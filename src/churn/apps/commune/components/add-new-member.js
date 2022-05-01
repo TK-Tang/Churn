@@ -62,7 +62,7 @@ function AddNewMember() {
 
                 <br/>
                 <br/>
-                Your partner. Your bro. Or another one who loathes the housing market. Who owns a part of the home and pays off a part of the loan.
+                Your partner. Your bro. Or another bloke who loathes the housing market. Another who owns a part of the home and pays off a part of the loan.
                 <br/>
                 <br/>
 

@@ -14,10 +14,12 @@ function LoanSummary() {
                             <React.Fragment>
                                 <br/>
                                 <br/>
-                                The chart displays the lifetime of the loan, which is ${loan.toLocaleString()} total.
+                                The graph displays the lifetime of the loan, which is ${loan.toLocaleString()} total.
                                 <br/>
                                 It begins in {loanStartYear}, lasting for {loanLifetime} years at a yearly interest of {perAnnumInterest}%.
                                 <br/>
+
+                                Type out the loan end dates here
                             </React.Fragment>
                         )
                     }

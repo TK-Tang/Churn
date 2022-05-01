@@ -20,14 +20,9 @@ function hasExceededLoanLifetime(date, data)
     return date.getFullYear() > data.loanStartYear + data.loanLifetime;
 }
 
-function drawLineForAllMembers(data) {
-    var dataPoints = [];
+function createDataPoints(data, monthlyPaymentTotal) {
     var dateCursor = new Date(data.loanStartYear, 0, 1);
-    var monthlyPaymentTotal = 0;
-
-    data.members.forEach((member) => { 
-        monthlyPaymentTotal = +monthlyPaymentTotal + +member.monthlyPayment;
-    });
+    var dataPoints = [];
 
     for (let loan = data.loan; loan > monthlyPaymentTotal; loan = loan + (loan * ((data.perAnnumInterest/100)/12)))
     {
@@ -40,8 +35,19 @@ function drawLineForAllMembers(data) {
             break;
         }
     }
-    
+
     dataPoints.reverse();
+    return dataPoints;
+}
+
+function drawLineForAllMembers(data) {
+    var monthlyPaymentTotal = 0;
+
+    data.members.forEach((member) => { 
+        monthlyPaymentTotal = +monthlyPaymentTotal + +member.monthlyPayment;
+    });
+
+    var dataPoints = createDataPoints(data, monthlyPaymentTotal);
 
     var x = {
         name: "All Members"  + "($" + monthlyPaymentTotal + ")",
@@ -57,25 +63,11 @@ function drawLineForAllMembers(data) {
 function drawLineForRichestMember(data) {
     var members = data.members.map(a => {return {...a}});
     members.sort((a, b) => b.monthlyPayment - a.monthlyPayment);
-    var richestMember = members[0];
 
-    var dataPoints = [];
-    var dateCursor = new Date(data.loanStartYear, 0, 1);
+    var richestMember = members[0];
     var monthlyPaymentTotal = richestMember.monthlyPayment;
 
-    for (let loan = data.loan; loan > monthlyPaymentTotal; loan = loan + (loan * ((data.perAnnumInterest/100)/12)))
-    {
-        loan = loan - monthlyPaymentTotal;
-        dateCursor = incrementDate(dateCursor);
-        dataPoints.push({x: dateCursor, y: loan});
-
-        if (hasExceededLoanLifetime(dateCursor, data))
-        {
-            break;
-        }
-    }
-    
-    dataPoints.reverse();
+    var dataPoints = createDataPoints(data, monthlyPaymentTotal);
 
     var x = {
         name: richestMember.name + " (Highest Income: $" + monthlyPaymentTotal + ")",
@@ -93,23 +85,9 @@ function drawLineForPoorestMember(data) {
     members.sort((a, b) => a.monthlyPayment - b.monthlyPayment );
     var poorestMember = members[0];
 
-    var dataPoints = [];
-    var dateCursor = new Date(data.loanStartYear, 0, 1);
     var monthlyPaymentTotal = poorestMember.monthlyPayment;
 
-    for (let loan = data.loan; loan > monthlyPaymentTotal; loan = loan + (loan * ((data.perAnnumInterest/100)/12)))
-    {
-        loan = loan - monthlyPaymentTotal;
-        dateCursor = incrementDate(dateCursor);
-        dataPoints.push({x: dateCursor, y: loan});
-
-        if (hasExceededLoanLifetime(dateCursor, data))
-        {
-            break;
-        }
-    }
-    
-    dataPoints.reverse();
+    var dataPoints = createDataPoints(data, monthlyPaymentTotal);
 
     var x = {
         name: poorestMember.name + " (Lowest Income: $" + monthlyPaymentTotal + ")",
@@ -125,24 +103,9 @@ function drawLineForPoorestMember(data) {
 function drawLineForTopTwoMembers(data) {
     var memberOne = data.members[0];
     var memberTwo = data.members[1];
-
-    var dataPoints = [];
-    var dateCursor = new Date(data.loanStartYear, 0, 1);
     var monthlyPaymentTotal = memberOne.monthlyPayment + memberTwo.monthlyPayment;
 
-    for (let loan = data.loan; loan > monthlyPaymentTotal; loan = loan + (loan * ((data.perAnnumInterest/100)/12)))
-    {
-        loan = loan - monthlyPaymentTotal;
-        dateCursor = incrementDate(dateCursor);
-        dataPoints.push({x: dateCursor, y: loan});
-
-        if (hasExceededLoanLifetime(dateCursor, data))
-        {
-            break;
-        }
-    }
-    
-    dataPoints.reverse();
+    var dataPoints = createDataPoints(data, monthlyPaymentTotal);
 
     var x = {
         name: memberOne.name + " & " + memberTwo.name + "($" + monthlyPaymentTotal + ")",
@@ -155,7 +118,7 @@ function drawLineForTopTwoMembers(data) {
     return x;
 }
 
-function Charts(props) {
+function LineGraph(props) {
     var title = "Loan Graph";
     var data = props.data;
     var lines = [];
@@ -205,4 +168,4 @@ function Charts(props) {
             </Segment>
 }
 
-export default Charts;
+export default LineGraph;

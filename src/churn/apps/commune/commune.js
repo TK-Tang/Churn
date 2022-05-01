@@ -1,13 +1,14 @@
 import { Component } from "react";
 import { Grid } from "semantic-ui-react";
 import AddNewMember from "./components/add-new-member.js";
-import Charts from "./components/charts.js";
+import CommuneContext from "./commune-context.js";
+import InterestChart from "./components/interest-chart.js"
 import Introduction from "./components/introduction.js"
+import LineGraph from "./components/loan-graph.js";
 import LoanAndInterest from "./components/loan-and-interests.js";
 import LoanSummary from "./components/loan-summary.js";
 import TheRoomMates from "./components/the-room-mates.js";
 import Save from "./components/save.js";
-import CommuneContext from "./commune-context.js";
 
 export default class Commune extends Component {
     constructor(props){
@@ -67,7 +68,7 @@ export default class Commune extends Component {
             <CommuneContext.Provider value={this.state}>
                 <Grid columns={8}>
                     <Grid.Row>
-                        <Grid.Column width={14}>
+                        <Grid.Column width={8}>
                             <Introduction/>
                         </Grid.Column>
                     </Grid.Row>
@@ -80,20 +81,25 @@ export default class Commune extends Component {
                         </Grid.Column>
                     </Grid.Row>
                     <Grid.Row>
-                        <Grid.Column width={11}>
-                            <Charts data={this.state}/>
+                        <Grid.Column width={14}>
+                            <LineGraph data={this.state}/>
                         </Grid.Column>
-                        <Grid.Column width={3}>
+                    </Grid.Row>
+                    <Grid.Row>
+                        <Grid.Column width={14}>
+                            <InterestChart data={this.state}/>
+                        </Grid.Column>
+                    </Grid.Row>
+                    <Grid.Row>
+                        <Grid.Column width={10}>
+                            <TheRoomMates/>
+                        </Grid.Column>
+                        <Grid.Column width={4}>
                             <LoanSummary/>
                         </Grid.Column>
                     </Grid.Row>
                     <Grid.Row>
-                        <Grid.Column width={14}>
-                            <TheRoomMates/>
-                        </Grid.Column>
-                    </Grid.Row>
-                    <Grid.Row>
-                        <Grid.Column width={14}>
+                        <Grid.Column width={8}>
                             <Save/>
                         </Grid.Column>
                     </Grid.Row>
