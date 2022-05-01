@@ -59,13 +59,11 @@ function AddNewMember() {
                 className="home-segment"
             >
                 <Label as="a" color="orange" ribbon>Add New Member</Label>
-
                 <br/>
                 <br/>
                 Your partner. Your bro. Or another bloke who loathes the housing market. Another who owns a part of the home and pays off a part of the loan.
                 <br/>
                 <br/>
-
                 <Form>
                     <Form.Group>
                         <Form.Field

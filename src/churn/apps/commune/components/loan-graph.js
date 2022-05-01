@@ -3,6 +3,11 @@ import { Label, Segment } from "semantic-ui-react";
 import CanvasJSReact from '../../../../canvasjs/canvasjs.react';
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
+function hasExceededLoanLifetime(date, data)
+{
+    return date.getFullYear() > data.loanStartYear + data.loanLifetime;
+}
+
 function incrementDate(date) {
     if (date.getMonth() != 11) {
         var newMonth = date.getMonth() + 1;
@@ -13,11 +18,6 @@ function incrementDate(date) {
 
         return new Date(newYear, 0, 1);
     }
-}
-
-function hasExceededLoanLifetime(date, data)
-{
-    return date.getFullYear() > data.loanStartYear + data.loanLifetime;
 }
 
 function createDataPoints(data, monthlyPaymentTotal) {
@@ -36,8 +36,7 @@ function createDataPoints(data, monthlyPaymentTotal) {
         }
     }
 
-    dataPoints.reverse();
-    return dataPoints;
+    return dataPoints.reverse();
 }
 
 function drawLineForAllMembers(data) {
@@ -49,38 +48,34 @@ function drawLineForAllMembers(data) {
 
     var dataPoints = createDataPoints(data, monthlyPaymentTotal);
 
-    var x = {
+    return {
         name: "All Members"  + "($" + monthlyPaymentTotal + ")",
         type: "spline",
         yValueFormatString: "$ #0.##",
         showInLegend: true,
         dataPoints: dataPoints
     }
-
-    return x;
 }
 
-function drawLineForRichestMember(data) {
+function drawLineForHighestIncomeMember(data) {
     var members = data.members.map(a => {return {...a}});
     members.sort((a, b) => b.monthlyPayment - a.monthlyPayment);
 
-    var richestMember = members[0];
-    var monthlyPaymentTotal = richestMember.monthlyPayment;
+    var highestIncomeMember = members[0];
+    var monthlyPaymentTotal = highestIncomeMember.monthlyPayment;
 
     var dataPoints = createDataPoints(data, monthlyPaymentTotal);
 
-    var x = {
+    return {
         name: richestMember.name + " (Highest Income: $" + monthlyPaymentTotal + ")",
         type: "spline",
         yValueFormatString: "$ #0.##",
         showInLegend: true,
         dataPoints: dataPoints
     }
-
-    return x;
 }
 
-function drawLineForPoorestMember(data) {
+function drawLineForLowestIncomeMember(data) {
     var members = data.members.map(a => {return {...a}});
     members.sort((a, b) => a.monthlyPayment - b.monthlyPayment );
     var poorestMember = members[0];
@@ -89,15 +84,13 @@ function drawLineForPoorestMember(data) {
 
     var dataPoints = createDataPoints(data, monthlyPaymentTotal);
 
-    var x = {
+    return {
         name: poorestMember.name + " (Lowest Income: $" + monthlyPaymentTotal + ")",
         type: "spline",
         yValueFormatString: "$ #0.##",
         showInLegend: true,
         dataPoints: dataPoints
     }
-
-    return x;
 }
 
 function drawLineForTopTwoMembers(data) {
@@ -107,15 +100,13 @@ function drawLineForTopTwoMembers(data) {
 
     var dataPoints = createDataPoints(data, monthlyPaymentTotal);
 
-    var x = {
+    return {
         name: memberOne.name + " & " + memberTwo.name + "($" + monthlyPaymentTotal + ")",
         type: "spline",
         yValueFormatString: "$ #0.##",
         showInLegend: true,
         dataPoints: dataPoints
     }
-
-    return x;
 }
 
 function LineGraph(props) {
@@ -124,8 +115,8 @@ function LineGraph(props) {
     var lines = [];
 
     if (data.members.length > 1) {
-        var lineForRichestMember = drawLineForRichestMember(data);
-        var lineForPoorestMember = drawLineForPoorestMember(data);
+        var lineForRichestMember = drawLineForHighestIncomeMember(data);
+        var lineForPoorestMember = drawLineForLowestIncomeMember(data);
         var lineForTopTwoMembers = drawLineForTopTwoMembers(data);
         var lineForAllMembers = drawLineForAllMembers(data);
 
