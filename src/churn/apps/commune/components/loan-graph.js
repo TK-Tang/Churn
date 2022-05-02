@@ -1,6 +1,7 @@
-import { React } from "react";
+import React from "react";
 import { Label, Segment } from "semantic-ui-react";
 import CanvasJSReact from '../../../../canvasjs/canvasjs.react';
+import CommuneContext from "../commune-context.js";
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 function hasExceededLoanLifetime(date, data)
@@ -28,7 +29,7 @@ function createDataPoints(data, monthlyPaymentTotal) {
     {
         loan = loan - monthlyPaymentTotal;
         dateCursor = incrementDate(dateCursor);
-        dataPoints.push({x: dateCursor, y: loan});
+        dataPoints.push({x: dateCursor, y: Math.round(loan)});
 
         if (hasExceededLoanLifetime(dateCursor, data))
         {
@@ -67,7 +68,7 @@ function drawLineForHighestIncomeMember(data) {
     var dataPoints = createDataPoints(data, monthlyPaymentTotal);
 
     return {
-        name: richestMember.name + " (Highest Income: $" + monthlyPaymentTotal + ")",
+        name: highestIncomeMember.name + " (Highest Income: $" + monthlyPaymentTotal + ")",
         type: "spline",
         yValueFormatString: "$ #0.##",
         showInLegend: true,
@@ -115,13 +116,13 @@ function LineGraph(props) {
     var lines = [];
 
     if (data.members.length > 1) {
-        var lineForRichestMember = drawLineForHighestIncomeMember(data);
-        var lineForPoorestMember = drawLineForLowestIncomeMember(data);
+        var lineForHighestIncomeMember = drawLineForHighestIncomeMember(data);
+        var lineForLowestIncomeMember = drawLineForLowestIncomeMember(data);
         var lineForTopTwoMembers = drawLineForTopTwoMembers(data);
         var lineForAllMembers = drawLineForAllMembers(data);
 
-        lines.push(lineForRichestMember);
-        lines.push(lineForPoorestMember);
+        lines.push(lineForHighestIncomeMember);
+        lines.push(lineForLowestIncomeMember);
         lines.push(lineForTopTwoMembers);
         lines.push(lineForAllMembers);
     } else {
@@ -155,7 +156,24 @@ function LineGraph(props) {
                 className="home-segment"
             >
                 <Label as="a" color="red" ribbon>Charts</Label>
-                <CanvasJSChart options = {options} />
+                <CanvasJSChart options={options} />
+
+                <CommuneContext.Consumer>
+                {
+                    ({loan, loanStartYear, loanLifetime, perAnnumInterest}) => (
+                        <React.Fragment>
+                            <br/>
+                            <br/>
+                            The graph displays the lifetime of the loan, which is ${loan.toLocaleString()} total.
+                            <br/>
+                            It begins in {loanStartYear}, lasting for {loanLifetime} years at a yearly interest of {perAnnumInterest}%.
+                            <br/>
+
+                            Type out the loan end dates here
+                        </React.Fragment>
+                    )
+                }
+            </CommuneContext.Consumer>
             </Segment>
 }
 

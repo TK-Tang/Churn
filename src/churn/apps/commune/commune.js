@@ -6,7 +6,7 @@ import InterestChart from "./components/interest-chart.js"
 import Introduction from "./components/introduction.js"
 import LineGraph from "./components/loan-graph.js";
 import LoanAndInterest from "./components/loan-and-interests.js";
-import LoanSummary from "./components/loan-summary.js";
+import TotalPaidPerMember from "./components/total-paid-per-member.js";
 import TheRoomMates from "./components/the-room-mates.js";
 import Save from "./components/save.js";
 
@@ -28,34 +28,41 @@ export default class Commune extends Component {
             members: [ 
                 {
                     name: "James Holden",
-                    monthlyPayment: 5000
+                    monthlyPayment: 4300
                 },
                 {
                     name: "Naomi Nagata",
-                    monthlyPayment: 4000
+                    monthlyPayment: 3900
                 },
                 {
                     name: "Alex Kamal",
-                    monthlyPayment: 3500
+                    monthlyPayment: 3200
                 },
                 {
                     name: "Amos Burton",
-                    monthlyPayment: 4500
+                    monthlyPayment: 3400
+                },
+                {
+                    name: "Chisjen Avasarala",
+                    monthlyPayment: 5100
                 }
             ],
-            addMember: () => { this.setState(
+            addMember: () => { 
+                this.setState (
                     previouState => 
                     ({ 
                         members: [...previouState.members, { name: this.state.memberName, monthlyPayment: this.state.memberMonthlyPayment }],
                     })
                 )
             },
-            deleteMember: (value) => { this.setState (
-                previousState =>
-                ({
-                    members: [...this.state.members.filter((m) => { return m.name != value})]
-                })
-            )},
+            deleteMember: (value) => { 
+                this.setState (
+                    x =>
+                    ({
+                        members: [...this.state.members.filter((m) => { return m.name != value})]
+                    })
+                )
+            },
             memberName: "Bobbie Draper",
             setMemberName: (value) => { this.setState({memberName: value}) },
             memberMonthlyPayment: 7700,
@@ -91,11 +98,11 @@ export default class Commune extends Component {
                         </Grid.Column>
                     </Grid.Row>
                     <Grid.Row>
-                        <Grid.Column width={10}>
-                            <TheRoomMates/>
+                        <Grid.Column width={6}>
+                            <TotalPaidPerMember data={this.state}/>
                         </Grid.Column>
-                        <Grid.Column width={4}>
-                            <LoanSummary/>
+                        <Grid.Column width={8}>
+                            <TheRoomMates/>
                         </Grid.Column>
                     </Grid.Row>
                     <Grid.Row>

@@ -1,11 +1,26 @@
 import { useState } from "react";
-import { Input, Label, Menu, Segment } from "semantic-ui-react";
+import { Label, Menu, Segment } from "semantic-ui-react";
 import CanvasJSReact from '../../../../canvasjs/canvasjs.react';
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
-function hasExceededLoanLifetime(date, data)
-{
+function hasExceededLoanLifetime(date, data) {
     return date.getFullYear() > data.loanStartYear + data.loanLifetime;
+}
+
+function writeLabelForDataPoint(loan, totalInterestPaid, dateCursor) {
+    var label = dateCursor.getFullYear() + ", " + dateCursor.toLocaleString("default", { month: "short" });
+
+    if (totalInterestPaid > loan) {
+        label = label + "💀💀💀";
+    } else if (totalInterestPaid > (loan/2)) {
+        label = label + "😱";
+    } else if (totalInterestPaid > (loan/3)) {
+        label = label + "😭";
+    } else if (totalInterestPaid > (loan/4)) {
+        label = label + "👀";
+    }
+
+    return label;
 }
 
 function incrementDate(date) {
@@ -28,10 +43,16 @@ function createDataPoints(data, monthlyPaymentTotal) {
 
     for (let loan = data.loan; loan > monthlyPaymentTotal; loan = loan + monthlyInterest)
     {
+        monthlyInterest = loan * ((data.perAnnumInterest/100)/12);
         totalInterestPaid = totalInterestPaid + monthlyInterest;
         loan = loan - monthlyPaymentTotal;
         dateCursor = incrementDate(dateCursor);
-        dataPoints.push({label: dateCursor.getFullYear() + ", " + dateCursor.toLocaleString("default", { month: "short" }), y: totalInterestPaid});
+
+        dataPoints.push({
+            label: writeLabelForDataPoint(data.loan, totalInterestPaid, dateCursor),
+            toolTipContent: "<b>{label}</b>: ${y}",
+            y: Math.round(totalInterestPaid),
+        });
 
         if (hasExceededLoanLifetime(dateCursor, data))
         {
@@ -46,15 +67,15 @@ function drawLineForLowestIncomeMember(data) {
     var members = data.members.map(a => {return {...a}});
     members.sort((a, b) => a.monthlyPayment - b.monthlyPayment );
 
-    var poorestMember = members[0];
-    var monthlyPaymentTotal = poorestMember.monthlyPayment;
+    var lowestIncomeMember = members[0];
+    var monthlyPaymentTotal = lowestIncomeMember.monthlyPayment;
 
     var dataPoints = createDataPoints(data, monthlyPaymentTotal);
 
     return dataPoints;
 }
 
-function drawChartForHighestncomeMembers(data) {
+function drawChartForHighestIncomeMembers(data) {
     var members = data.members.map(a => {return {...a}});
     members.sort((a, b) => b.monthlyPayment - a.monthlyPayment);
 
@@ -102,7 +123,7 @@ function InterestChart(props) {
             dataPoints = drawChartForTopTwoMembers(data);
             break;
         case "Highest Income":
-            dataPoints = drawChartForHighestncomeMembers(data);
+            dataPoints = drawChartForHighestIncomeMembers(data);
             break;
         case "Lowest Income":
             dataPoints = drawLineForLowestIncomeMember(data);
