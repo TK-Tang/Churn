@@ -22,7 +22,6 @@ function incrementDate(date) {
 function drawPieForAllMembers(data) {
     var dateCursor = new Date(data.loanStartYear, 0, 1);
     var dataPoints = [];
-    var loan = data.loan;
     let totalInterestPaid = 0;
     let monthlyPaymentTotal = 0;
     let monthlyInterest = data.loan * ((data.perAnnumInterest/100)/12);
@@ -45,24 +44,24 @@ function drawPieForAllMembers(data) {
     }
 
     data.members.forEach((member) => {
-        var totalInterestPaidPerMember = (member.monthlyPayment / monthlyPaymentTotal) * totalInterestPaid
-        dataPoints.push({label: member.name, y: Math.round(totalInterestPaidPerMember)});
+        var totalLoanPaidPerMember = (member.monthlyPayment / monthlyPaymentTotal) * data.loan
+        dataPoints.push({label: member.name, y: Math.round(totalLoanPaidPerMember)});
     });
 
     return dataPoints;
 }
 
-function TotalPaidPerMember(props) {
+function TotalLoanPaidPerMember(props) {
     var data = props.data;
 
     const options = {
         exportEnabled: true,
         animationEnabled: true,
         title: {
-            text: "Total Interest Paid Per Member"
+            text: "Total Loan Paid Per Member"
         },
         data: [{
-            type: "pie",
+            type: "doughnut",
             startAngle: 75,
             toolTipContent: "<b>{label}</b>: ${y}",
             showInLegend: "true",
@@ -77,9 +76,9 @@ function TotalPaidPerMember(props) {
                 color={"teal"}
                 className="home-segment"
             >
-                <Label as="a" color="teal" ribbon>Total Paid Per Member</Label>
+                <Label as="a" color="teal" ribbon>Loan Split</Label>
                 <CanvasJSChart options={options} />
             </Segment>;
 }
 
-export default TotalPaidPerMember;
+export default TotalLoanPaidPerMember;

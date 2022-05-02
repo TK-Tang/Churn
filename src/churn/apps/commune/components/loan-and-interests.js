@@ -1,3 +1,4 @@
+import React from "react";
 import { Form, Input, Label, Segment } from "semantic-ui-react";
 import CommuneContext from "../commune-context.js";
 
@@ -83,37 +84,54 @@ function LoanAndInterest() {
                 color={"green"}
                 className="home-segment"
             >
-                    <Label as="a" color="green" ribbon>Loan and Interest</Label>
+                <Label as="a" color="green" ribbon>Loan and Interest</Label>
 
-                    <br/>
-                    <br/>
-                    The loan you all take to buy your home and the interest rate.
-                    <br/>
-                    <br/>
+                <br/>
+                <br/>
+                The loan you all take to buy your home and the interest rate.
+                <br/>
+                <br/>
 
-                    <Form>
-                        <Form.Group>
-                            <Form.Field
-                                control={LoanInput}
-                                label="Loan"
-                                placeholder="Loan"
-                            />
-                            <Form.Field
-                                control={PerAnnumInterestInput}
-                                label="Per Annum Interest"
-                                placeholder="Per Annum Interest"
-                            />
-                            <Form.Field
-                                control={LoanLifetimeInput}
-                                label="Loan Lifetime"
-                                placeholder="Loan Lifetime"
-                            />
-                            <Form.Field
-                                control={LoanStarYearInput}
-                                label="Loan Start Year"
-                            />
-                        </Form.Group>
-                    </Form>
+                <Form>
+                    <Form.Group>
+                        <Form.Field
+                            control={LoanInput}
+                            label="Loan"
+                            placeholder="Loan"
+                        />
+                        <Form.Field
+                            control={PerAnnumInterestInput}
+                            label="Per Annum Interest"
+                            placeholder="Per Annum Interest"
+                        />
+                        <Form.Field
+                            control={LoanLifetimeInput}
+                            label="Loan Lifetime"
+                            placeholder="Loan Lifetime"
+                        />
+                        <Form.Field
+                            control={LoanStarYearInput}
+                            label="Loan Start Year"
+                        />
+                    </Form.Group>
+                </Form>
+
+                <CommuneContext.Consumer>
+                    {
+                        ({loan, loanStartYear, loanLifetime, perAnnumInterest}) => (
+                            <React.Fragment>
+                                <br/>
+                                <br/>
+                                The graph displays the lifetime of the loan, which is ${loan.toLocaleString()} total.
+                                <br/>
+                                It begins in {loanStartYear}, lasting for {loanLifetime} years at a yearly interest of {perAnnumInterest}%.
+                                <br/>
+
+                                Type out the loan end dates here
+                            </React.Fragment>
+                        )
+                    }
+                </CommuneContext.Consumer>
             </Segment>;
 }
 

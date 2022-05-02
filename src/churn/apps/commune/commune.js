@@ -6,7 +6,8 @@ import InterestChart from "./components/interest-chart.js"
 import Introduction from "./components/introduction.js"
 import LineGraph from "./components/loan-graph.js";
 import LoanAndInterest from "./components/loan-and-interests.js";
-import TotalPaidPerMember from "./components/total-paid-per-member.js";
+import TotalnterestPaidPerMember from "./components/total-interest-paid-per-member.js";
+import TotalLoanPaidPerMember from "./components/total-loan-paid-per-member.js";
 import TheRoomMates from "./components/the-room-mates.js";
 import Save from "./components/save.js";
 
@@ -73,14 +74,14 @@ export default class Commune extends Component {
     render(){
         return (
             <CommuneContext.Provider value={this.state}>
-                <Grid columns={8}>
+                <Grid id="main-grid">
                     <Grid.Row>
-                        <Grid.Column width={8}>
+                        <Grid.Column width={9}>
                             <Introduction/>
                         </Grid.Column>
                     </Grid.Row>
                     <Grid.Row>
-                        <Grid.Column width={8}>
+                        <Grid.Column width={9}>
                             <LoanAndInterest/>
                         </Grid.Column>
                         <Grid.Column width={6}>
@@ -88,21 +89,24 @@ export default class Commune extends Component {
                         </Grid.Column>
                     </Grid.Row>
                     <Grid.Row>
-                        <Grid.Column width={14}>
+                        <Grid.Column width={15}>
                             <LineGraph data={this.state}/>
                         </Grid.Column>
                     </Grid.Row>
                     <Grid.Row>
-                        <Grid.Column width={14}>
+                        <Grid.Column width={15}>
                             <InterestChart data={this.state}/>
                         </Grid.Column>
                     </Grid.Row>
                     <Grid.Row>
                         <Grid.Column width={6}>
-                            <TotalPaidPerMember data={this.state}/>
+                            <TotalnterestPaidPerMember data={this.state}/>
                         </Grid.Column>
-                        <Grid.Column width={8}>
+                        <Grid.Column width={3}>
                             <TheRoomMates/>
+                        </Grid.Column>
+                        <Grid.Column width={6}>
+                            <TotalLoanPaidPerMember data={this.state}/>
                         </Grid.Column>
                     </Grid.Row>
                     <Grid.Row>

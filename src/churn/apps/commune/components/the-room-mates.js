@@ -13,7 +13,6 @@ function TheRoomMates() {
                         <Table.Row>
                             <Table.HeaderCell>Name</Table.HeaderCell>
                             <Table.HeaderCell>Monthly Payment</Table.HeaderCell>
-                            <Table.HeaderCell>Total Lifetime Payment</Table.HeaderCell>
                             <Table.HeaderCell textAlign="right">Options</Table.HeaderCell>
                         </Table.Row>
                     </Table.Header>
@@ -24,7 +23,6 @@ function TheRoomMates() {
                                     <Table.Row key={index}>
                                         <Table.Cell>{member.name}</Table.Cell>
                                         <Table.Cell>{member.monthlyPayment}</Table.Cell>
-                                        <Table.Cell>0</Table.Cell>
                                         <Table.Cell textAlign="right">
                                             <Button icon color="red" onClick={() => deleteMember(member.name)}>
                                                 <Icon name="trash" />
