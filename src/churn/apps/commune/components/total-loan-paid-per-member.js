@@ -1,23 +1,8 @@
-import React from "react";
+import { hasExceededLoanLifetime, incrementDateByOneMonth } from "../utils/date-utils.js";
 import { Label, Segment } from "semantic-ui-react";
 import CanvasJSReact from '../../../../canvasjs/canvasjs.react';
+import React from "react";
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
-
-function hasExceededLoanLifetime(date, data) {
-    return date.getFullYear() > data.loanStartYear + data.loanLifetime;
-}
-
-function incrementDate(date) {
-    if (date.getMonth() != 11) {
-        var newMonth = date.getMonth() + 1;
-
-        return new Date(date.getFullYear(), newMonth, 1);
-    } else {
-        var newYear = date.getFullYear() + 1;
-
-        return new Date(newYear, 0, 1);
-    }
-}
 
 function drawPieForAllMembers(data) {
     var dateCursor = new Date(data.loanStartYear, 0, 1);
@@ -35,7 +20,7 @@ function drawPieForAllMembers(data) {
         monthlyInterest = loan * ((data.perAnnumInterest/100)/12);
         totalInterestPaid = totalInterestPaid + monthlyInterest;
         loan = loan - monthlyPaymentTotal;
-        dateCursor = incrementDate(dateCursor);
+        dateCursor = incrementDateByOneMonth(dateCursor);
 
         if (hasExceededLoanLifetime(dateCursor, data))
         {

@@ -1,11 +1,8 @@
+import { hasExceededLoanLifetime, incrementDateByOneMonth } from "../utils/date-utils.js";
 import { useState } from "react";
 import { Label, Menu, Segment } from "semantic-ui-react";
 import CanvasJSReact from '../../../../canvasjs/canvasjs.react';
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
-
-function hasExceededLoanLifetime(date, data) {
-    return date.getFullYear() > data.loanStartYear + data.loanLifetime;
-}
 
 function writeLabelForDataPoint(loan, totalInterestPaid, dateCursor) {
     var label = dateCursor.getFullYear() + ", " + dateCursor.toLocaleString("default", { month: "short" });
@@ -23,18 +20,6 @@ function writeLabelForDataPoint(loan, totalInterestPaid, dateCursor) {
     return label;
 }
 
-function incrementDate(date) {
-    if (date.getMonth() != 11) {
-        var newMonth = date.getMonth() + 1;
-
-        return new Date(date.getFullYear(), newMonth, 1);
-    } else {
-        var newYear = date.getFullYear() + 1;
-
-        return new Date(newYear, 0, 1);
-    }
-}
-
 function createDataPoints(data, monthlyPaymentTotal) {
     var dateCursor = new Date(data.loanStartYear, 0, 1);
     var dataPoints = [];
@@ -44,9 +29,14 @@ function createDataPoints(data, monthlyPaymentTotal) {
     for (let loan = data.loan; loan > monthlyPaymentTotal; loan = loan + monthlyInterest)
     {
         monthlyInterest = loan * ((data.perAnnumInterest/100)/12);
-        totalInterestPaid = totalInterestPaid + monthlyInterest;
         loan = loan - monthlyPaymentTotal;
-        dateCursor = incrementDate(dateCursor);
+        dateCursor = incrementDateByOneMonth(dateCursor);
+
+        if (monthlyInterest > monthlyPaymentTotal) {
+            totalInterestPaid = totalInterestPaid + monthlyPaymentTotal;
+        } else {
+            totalInterestPaid = totalInterestPaid + monthlyInterest;
+        }
 
         dataPoints.push({
             label: writeLabelForDataPoint(data.loan, totalInterestPaid, dateCursor),
