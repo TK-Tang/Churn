@@ -9,7 +9,7 @@ function EmailInput() {
                 type="text" 
                 placeholder="Email"
             >
-                <Icon name='at' />
+                <Icon name="mail outline" />
                 <CommuneContext.Consumer>
                     {
                         ({email, setEmail}) => 

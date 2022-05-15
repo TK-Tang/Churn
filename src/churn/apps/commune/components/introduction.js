@@ -1,4 +1,3 @@
-import { React } from "react";
 import { Divider, Label, Header, Segment } from "semantic-ui-react";
 
 function Introduction() {
@@ -18,7 +17,7 @@ function Introduction() {
                 <br/>
                 This app helps you calculate how much more quickly you would pay off your home loan if you shared a commune home.
                 <br/>
-                The sooner you have a home, a community with friends and family and the sooner you can quit your job and do what you want to do!
+                The sooner you have a home, a community with friends and family and the sooner you can quit your job and just do what you want to do!
             </Segment>;
 }
 

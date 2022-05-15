@@ -85,12 +85,22 @@ function LoanAndInterest() {
                 className="home-segment"
             >
                 <Label as="a" color="green" ribbon>Loan and Interest</Label>
-
-                <br/>
-                <br/>
-                The loan you all take to buy your home and the interest rate.
-                <br/>
-                <br/>
+                
+                <CommuneContext.Consumer>
+                    {
+                        ({loan, loanStartYear, loanLifetime, perAnnumInterest}) => (
+                            <React.Fragment>
+                                <br/>
+                                <br/>
+                                The loan you all take to buy your home and the interest rate.
+                                The graph displays the lifetime of the loan, which is ${loan.toLocaleString()} total.
+                                It begins in {loanStartYear}, lasting for {loanLifetime} years at a yearly interest of {perAnnumInterest}%.
+                                <br/>
+                                <br/>
+                            </React.Fragment>
+                        )
+                    }
+                </CommuneContext.Consumer>
 
                 <Form>
                     <Form.Group>
@@ -115,23 +125,6 @@ function LoanAndInterest() {
                         />
                     </Form.Group>
                 </Form>
-
-                <CommuneContext.Consumer>
-                    {
-                        ({loan, loanStartYear, loanLifetime, perAnnumInterest}) => (
-                            <React.Fragment>
-                                <br/>
-                                <br/>
-                                The graph displays the lifetime of the loan, which is ${loan.toLocaleString()} total.
-                                <br/>
-                                It begins in {loanStartYear}, lasting for {loanLifetime} years at a yearly interest of {perAnnumInterest}%.
-                                <br/>
-
-                                Type out the loan end dates here
-                            </React.Fragment>
-                        )
-                    }
-                </CommuneContext.Consumer>
             </Segment>;
 }
 

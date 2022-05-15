@@ -27,6 +27,14 @@ function LeftSideBar() {
                 <Icon name="chart line"/>
                 Compound
             </Menu.Item>
+            <Menu.Item as="a" onClick={() => history("/superchat")}>
+                <Icon name="comments outline"/>
+                Super Chat
+            </Menu.Item>
+            <Menu.Item as="a" onClick={() => history("/emojiwars")}>
+                <Icon name="fighter jet"/>
+                Emoji Wars
+            </Menu.Item>
         </Sidebar>
     );
 }

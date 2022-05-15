@@ -58,10 +58,10 @@ function TotalLoanPaidPerMember(props) {
     }
 
     return  <Segment
-                color={"teal"}
+                color={"olive"}
                 className="home-segment"
             >
-                <Label as="a" color="teal" ribbon>Loan Split</Label>
+                <Label as="a" color="olive" ribbon>Loan Split</Label>
                 <CanvasJSChart options={options} />
             </Segment>;
 }

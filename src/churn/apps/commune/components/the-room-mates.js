@@ -6,6 +6,7 @@ function TheRoomMates() {
     return  <Segment
                 color={"purple"}
                 className="home-segment"
+                style={main_css}
             >
                 <Label as="a" color="purple" ribbon>The Room Mates</Label>
                 <Table stackable>
@@ -35,6 +36,10 @@ function TheRoomMates() {
                     </Table.Body>
                 </Table>
             </Segment>;
+}
+
+const main_css = {
+    height: "458px"
 }
 
 export default TheRoomMates;
