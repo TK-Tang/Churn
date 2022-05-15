@@ -27,9 +27,9 @@ function LeftSideBar() {
                 <Icon name="chart line"/>
                 Compound
             </Menu.Item>
-            <Menu.Item as="a" onClick={() => history("/superchat")}>
+            <Menu.Item as="a" onClick={() => history("/churn-chat-room")}>
                 <Icon name="comments outline"/>
-                Super Chat
+                Churn Chat Room
             </Menu.Item>
             <Menu.Item as="a" onClick={() => history("/emojiwars")}>
                 <Icon name="fighter jet"/>

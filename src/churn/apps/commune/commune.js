@@ -1,16 +1,16 @@
 import { Component } from "react";
 import { Grid } from "semantic-ui-react";
-import AddNewMember from "./components/add-new-member.js";
-import CommuneContext from "./commune-context.js";
-import InterestChart from "./components/interest-chart.js"
-import Introduction from "./components/introduction.js"
-import LineGraph from "./components/loan-graph.js";
-import LinksAndInfo from "./components/links-and-info.js";
-import LoanAndInterest from "./components/loan-and-interests.js";
-import TotalnterestPaidPerMember from "./components/total-interest-paid-per-member.js";
-import TotalLoanPaidPerMember from "./components/total-loan-paid-per-member.js";
-import TheRoomMates from "./components/the-room-mates.js";
-import Save from "./components/save.js";
+import AddNewMember from "./components/add-new-member";
+import CommuneContext from "./commune-context";
+import InterestChart from "./components/interest-chart"
+import Introduction from "./components/introduction"
+import LineGraph from "./components/loan-graph";
+import LinksAndInfo from "./components/links-and-info";
+import LoanAndInterest from "./components/loan-and-interests";
+import TotalnterestPaidPerMember from "./components/total-interest-paid-per-member";
+import TotalLoanPaidPerMember from "./components/total-loan-paid-per-member";
+import TheRoomMates from "./components/the-room-mates";
+import Save from "./components/save";
 
 export default class Commune extends Component {
     constructor(props){

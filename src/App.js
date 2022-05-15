@@ -1,7 +1,6 @@
 import { React, Component } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Landing from "./churn/landing";
-import { db } from "./api/firebase";
 
 function TKTang() {
     return <h1>I ain't a smart guy.</h1>;
