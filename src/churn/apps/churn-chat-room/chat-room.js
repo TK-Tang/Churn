@@ -9,7 +9,9 @@ function ChatRoom() {
 
     return (
         <div>
-            {messages && messages.map(msg => <ChatMessage key={msg.id} message={msg} />)}
+            {
+                messages && messages.map(msg => <ChatMessage key={msg.id} message={msg} />)
+            }
         </div>
     )
 }

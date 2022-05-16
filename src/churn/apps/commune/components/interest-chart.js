@@ -1,4 +1,4 @@
-import { hasExceededLoanLifetime, incrementDateByOneMonth } from "../utils/date-utils.js";
+import { hasExceededLoanLifetime, incrementDateByOneMonth } from "../utils/date-utils";
 import { useState } from "react";
 import { Label, Menu, Segment } from "semantic-ui-react";
 import CanvasJSReact from '../../../../canvasjs/canvasjs.react';

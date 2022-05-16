@@ -1,7 +1,6 @@
 import { firebase } from "./firebase-auth/index";
-import "firebase/compat/auth";
-import "firebase/compat/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
+import "firebase/compat/auth";
 import ChatRoom from "./chat-room";
 
 const auth = firebase.auth();
@@ -22,13 +21,11 @@ function ChurnChatRoom() {
     )
 }
 
-function signInWithGoogle()  {
-    const provider = new firebase.auth.GoogleAuthProvider();
-    auth.signInWithPopup(provider);
-}
-
 function SignIn() {
-   
+    const signInWithGoogle = () => {
+        const provider = new firebase.auth.GoogleAuthProvider();
+        auth.signInWithPopup(provider);
+    }
     
     return (
         <button onClick={signInWithGoogle}>Sign in with google</button>

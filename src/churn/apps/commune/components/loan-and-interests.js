@@ -1,6 +1,6 @@
 import React from "react";
 import { Form, Input, Label, Segment } from "semantic-ui-react";
-import CommuneContext from "../commune-context.js";
+import CommuneContext from "../commune-context";
 
 function LoanInput() {
     return  <Input labelPosition="right" type="text" placeholder="Loan">

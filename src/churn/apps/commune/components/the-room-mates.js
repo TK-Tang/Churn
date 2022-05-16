@@ -1,6 +1,6 @@
 import { React } from "react";
 import { Button, Icon, Label, Segment, Table } from "semantic-ui-react";
-import CommuneContext from "../commune-context.js";
+import CommuneContext from "../commune-context";
 
 function TheRoomMates() {
     return  <Segment
