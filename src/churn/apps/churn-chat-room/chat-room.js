@@ -1,5 +1,5 @@
 import { collection, getDocs, limit, orderBy, query} from "firebase/firestore";
-import { db } from "./firebase-auth/index";
+import { db } from "./firebase-auth/auth";
 import { useEffect, useState } from 'react';
 import ChatMessage from "./chat-message";
 

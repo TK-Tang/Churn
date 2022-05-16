@@ -1,4 +1,4 @@
-import { firebase } from "./firebase-auth/index";
+import { firebase } from "./firebase-auth/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
 import "firebase/compat/auth";
 import ChatRoom from "./chat-room";
