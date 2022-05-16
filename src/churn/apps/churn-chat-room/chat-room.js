@@ -1,19 +1,27 @@
-import { useCollectionData } from "react-firebase-hooks/firestore";
-import { firestore } from "./firebase-auth/index";
+import { collection, getDocs, limit, orderBy, query} from "firebase/firestore";
+import { db } from "./firebase-auth/index";
+import { useEffect, useState } from 'react';
 import ChatMessage from "./chat-message";
 
-function ChatRoom() {
-    const messagesRef = firestore.collection("messages");
-    const query = messagesRef.orderBy("createdAt").limit(25);
-    const [messages] = useCollectionData(query, {idField: "id"});
+export default function ChatRoom() {
+    const [messages, setMessages] = useState([]);
+
+    useEffect(() => {
+        const messageRef = collection(db, "messages");
+        const q = query(messageRef, orderBy("createdAt"), limit(25));
+        getDocs(q).then(snapshot => {
+            var msgs = [];
+            snapshot.forEach(m => msgs.push(m));
+
+            setMessages(msgs);
+        });
+    }, []);
 
     return (
         <div>
             {
-                messages && messages.map(msg => <ChatMessage key={msg.id} message={msg} />)
+                messages.map(msg => <ChatMessage key={msg.id} message={msg.data()} />)
             }
         </div>
     )
 }
-
-export default ChatRoom;

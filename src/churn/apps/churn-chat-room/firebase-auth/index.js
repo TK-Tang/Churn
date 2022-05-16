@@ -1,4 +1,5 @@
 import firebaseApp from "firebase/compat/app";
+import { getFirestore } from "firebase/firestore";
 import "firebase/compat/firestore";
 
 const config = {
@@ -11,6 +12,8 @@ const config = {
     measurementId: "G-TKXSDLE1S6",
 }
 
-firebaseApp.initializeApp(config);
+var churnChatRoomFirebaseApplication = firebaseApp.initializeApp(config);
+
 export const firebase = firebaseApp;
 export const firestore = firebase.firestore();
+export const db = getFirestore(churnChatRoomFirebaseApplication);
