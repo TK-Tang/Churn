@@ -1,9 +1,6 @@
-import { firebase } from "./firebase-auth/auth";
+import { firebase, auth } from "./firebase-auth/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
-import "firebase/compat/auth";
 import ChatRoom from "./chat-room";
-
-const auth = firebase.auth();
 
 function ChurnChatRoom() {
     const [user] = useAuthState(auth);
