@@ -1,0 +1,24 @@
+#add-new-member-button {
+    margin-top: 23px;
+}
+
+#add-new-member-segment {
+    height: 230px;
+}
+
+#loan-and-interest-segment {
+    height: 230px;
+}
+
+#main-grid {
+    padding-right: 30px;
+}
+
+#root {
+    height: 100vh;
+    width: 100%;
+}
+
+.opacity-0 {
+    opacity: 0;
+}

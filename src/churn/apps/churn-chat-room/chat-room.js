@@ -1,12 +1,14 @@
-import { firebase, auth } from "./firebase-auth/auth";
-import { collection, getDocs, limit, orderBy, query} from "firebase/firestore";
-import { db } from "./firebase-auth/auth";
-import { useEffect, useState } from 'react';
+import { firebase, auth } from "./firebase/auth";
+import { collection, doc, getDocs, limit, orderBy, query, setDoc } from "firebase/firestore";
+import { db } from "./firebase/auth";
+import { useEffect, useState, useRef } from "react";
+import { v4 as uuidv4 } from "uuid";
 import ChatMessage from "./chat-message";
 
 const messagesRef = collection(db, "messages");
 
 export default function ChatRoom() {
+    const anchor = useRef();
     const [messages, setMessages] = useState([]);
     const [formValue, setFormValue] = useState("");
 
@@ -25,7 +27,7 @@ export default function ChatRoom() {
     
         const { uid, photoURL } = auth.currentUser;
     
-        await messagesRef.Add({
+        await setDoc(doc(db, "messages", uuidv4()), {
             text: formValue,
             createdAt: firebase.firestore.FieldValue.serverTimestamp(),
             uid,
@@ -33,6 +35,7 @@ export default function ChatRoom() {
         });
     
         setFormValue("");
+        anchor.current.scrollIntoView({ behavior: 'smooth' });
     }
 
     return (
@@ -40,10 +43,12 @@ export default function ChatRoom() {
             {
                 messages.map(msg => <ChatMessage key={msg.id} message={msg.data()} />)
             }
+            <span ref={anchor} />
 
-            <form onSubmit={sendMessage}>
-                <input value={formValue} onChange={(e) => setFormValue(e.target.value)} />
-                <button type="submit">🕊️</button>
+
+            <form id="churn-chat-form" onSubmit={sendMessage}>
+                <input id="churn-chat-end-message-input" value={formValue} onChange={(e) => setFormValue(e.target.value)} />
+                <button id="churn-chat-end-message-button" type="submit">🕊️</button>
             </form>
         </div>
     )
