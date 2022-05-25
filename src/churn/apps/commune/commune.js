@@ -50,7 +50,7 @@ export default class Commune extends Component {
                 }
             ],
             addMember: () => { 
-                this.setState (
+                this.setState(
                     previouState => 
                     ({ 
                         members: [...previouState.members, { name: this.state.memberName, monthlyPayment: this.state.memberMonthlyPayment }],
@@ -58,7 +58,7 @@ export default class Commune extends Component {
                 )
             },
             deleteMember: (value) => { 
-                this.setState (
+                this.setState(
                     x =>
                     ({
                         members: [...this.state.members.filter((m) => { return m.name != value})]

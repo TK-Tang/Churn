@@ -17,17 +17,15 @@ export default function ChatRoom() {
     const [messageFormValue, setMessageFormValue] = useState("");
 
     useEffect(() => {
-        const q = query(messagesRef, orderBy(MessagesSchema.CREATED_AT, "desc"), limit(25));
+        const q = query(messagesRef, orderBy(MessagesSchema.CREATED_AT, "asc"), limit(25));
         getDocs(q).then(snapshot => {
             var newMessages = [];
             snapshot.forEach(m => newMessages.push(m));
-            setInitialMessageHistory(newMessages.reverse());
+            setInitialMessageHistory(newMessages);
         });
 
         unsubscribe = onSnapshot(query(messagesRef, orderBy(MessagesSchema.CREATED_AT, "desc"), limit(1)), (snapshot) => {
-            var newMessages = [];
-            snapshot.forEach(m => newMessages.push(m));
-            setIncomingMessageHistory(incomingMessageHistory.concat(newMessages));
+            snapshot.forEach(m => setIncomingMessageHistory(previousIncomingMessageHistory => [...previousIncomingMessageHistory, m]));
         });
 
         return () => unsubscribe();
