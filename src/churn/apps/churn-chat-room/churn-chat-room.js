@@ -9,7 +9,7 @@ function ChurnChatRoom() {
     return (
         <div className="churn-chat-room">
             <header className="churn-chat-room-header">
-                <h1>⚛️🔥💬</h1>
+                <h1>⚛️🔥💬 Originally by Fireship</h1>
                 <SignOut />
             </header>
             <section>

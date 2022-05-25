@@ -10,11 +10,9 @@ import ChurnChatRoom from "./apps/churn-chat-room/churn-chat-room";
 export default class Landing extends Component {
     render() {
         return(
-            <Sidebar.Pushable>
-                <Sidemenu
-                    apps={this.apps}
-                />
-                <Sidebar.Pusher className="main-contents">
+            <Sidebar.Pushable id="main-contents-wrapper">
+                <Sidemenu />
+                <Sidebar.Pusher id="main-contents">
                     <Routes>
                         <Route path="/commune" element={<Commune/>} />
                         <Route path="/churn-chat-room" element={<ChurnChatRoom/>} />
